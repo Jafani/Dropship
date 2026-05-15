@@ -415,6 +415,8 @@ jobs:
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
+        with:
+    credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: Deploy Storage Rules
         if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && !inputs.skip_deploy_storage)
