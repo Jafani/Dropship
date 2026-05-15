@@ -285,10 +285,10 @@ jobs:
           PROJECT_ID=$(cat .firebaserc | jq -r '.projects.default')
           echo "project_id=$PROJECT_ID" >> $GITHUB_OUTPUT
 
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Authenticate to Google Cloud
+  uses: google-github-actions/auth@v2
+  with:
+    credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
@@ -534,4 +534,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           projectId: '${{ steps.firebase-config.outputs.project_id }}'
           channelId: live
-
